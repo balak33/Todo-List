@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Responsive ToDo List</title>
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .todo-container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .todo-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #ddd;
+            margin: 8px 0;
+            padding: 10px;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 20px;
+        }
+
+
+        .day {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        .current-day {
+            background-color: #007BFF;
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const currentDate = new Date();
+            const currentDay = currentDate.getDate();
+            const currentMonth = currentDate.getMonth();
+            const currentYear = currentDate.getFullYear();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const todoList = document.getElementById('todo-list');
+            const calendar = document.getElementById('calendaAr');
+
+            // Display current day and date
+            document.getElementById('current-day').innerText = `Day ${15-currentDay}`;
+            document.getElementById('current-date').innerText = currentDate.toDateString();
+
+            // Display calendar for the current month
+            for (let i = 1; i <= daysInMonth; i++) {
+                const dayElement = document.createElement('div');
+                dayElement.classList.add('day');
+                dayElement.innerText = i;
+
+                if (i === currentDay) {
+                    dayElement.classList.add('current-day');
+                }
+
+                calendar.appendChild(dayElement);
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="header">
+            
+            <div class="todo-container">
+                <div class="todo-header">
+                    <h1>🌟⭐ 𝕋𝕆-𝔻𝕆 𝕃𝕀𝕊𝕋 ⭐🌟</h1>
+                    <p id="current-day"></p>
+                    <p id="current-date"></p>
+                </div>
+        
+                <ul id="todo-list" class="todo-list">
+                    <!-- ToDo items will be added here dynamically -->
+                </ul>
+            </div>
+           <!-- <h1>ToDo List</h1>
+            <div id="currentDate"></div>-->
+
+        </div>
+        <div class="controls">
+            <button onclick="prevMonth()">Previous Month</button>
+            <button onclick="nextMonth()">Next Month</button>
+        </div>
+        <!--<div class="calendar" id="calendar"></div>-->
+        <div class="calendar" id="calendar">
+            <!-- Calendar days will be added here dynamically -->
+        </div>
+        <div class="todo-container">
+            <h2>ToDo List</h2>
+            <input type="text" id="taskInput" placeholder="Add a new task">
+            <button onclick="addTask()">Add Task</button>
+            <ul id="taskList"></ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+
+<!---------FOR CALLENDER-->
+
+
+
+</html>
